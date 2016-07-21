@@ -11,8 +11,13 @@ var options     = 'units=si';
 qString = apiEndpoint + apiKey + '/' + latitude +','+ longitude +'?'+ options;
 console.log(qString);
 
+var meteoData;
+
 request(qString, function(error,response, body) {
     if (!error && response.statusCode == 200) {
-        console.log(body);
+        // console.log(body);
+        meteoData = JSON.parse(body);
     }
 });
+
+
