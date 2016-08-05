@@ -17,22 +17,39 @@ var apiEndpoint = 'https://api.forecast.io/forecast/';
 var apiKey      = 'a1e8b238a7079186703dc8429746331a';
 var options     = 'units=si&exclude=alerts,flags';
 
-cities.forEach
-qString = apiEndpoint + apiKey + '/' + latitude +','+ longitude +'?'+ options;
-console.log(qString);
 
-var meteoData;
+for (var prop in cities) {
+    if (cities.hasOwnProperty(prop)) {
+        console.log(prop, cities[prop][0], cities[prop][1]);
 
-request(qString, function(error,response, body) {
-    if (!error && response.statusCode == 200) {
-        console.log(body);
-        meteoData = JSON.parse(body);
-        fs.writeFile("data.json", body, function(err) 
-{            if (err) {
-                return console.log(err);
+        latitude  = cities[prop][0];
+        longitude = cities[prop][1];
+
+        qString = apiEndpoint + apiKey + '/' + latitude +','+ longitude +'?'+ options;
+        console.log(qString);
+
+        var meteoData;
+
+        request(qString, function(error,response, body) 
+            {
+            if (!error && response.statusCode == 200) 
+                {
+                //console.log(body);
+                meteoData = JSON.parse(body);
+                fs.writeFileSync("data.json", body, {'flags':'a'}, function(err) 
+                    {   if (err) 
+                        {
+                        return console.log(err);
+                        }
+                    }
+                            );    
+                }
+                else
+                    console.log(error);
             }
-        });    
+        );
+
+ 
+
     }
-});
-
-
+};
