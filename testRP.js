@@ -12,6 +12,21 @@ var cities = {
     VamaVeche: [43.75163695001963, 28.569205850000003]
 };
 
+
+function getJson(options) {
+    return  rp(options).then(function (response) {
+            fName = 'city_'+prop+'.json';
+            fs.writeFile(fName, response, {'flags':'a'}); 
+            // var meteoData = JSON.parse(response);
+            // console.log(meteoData);
+            // console.log(response);
+        })
+        .catch( function (err) {
+            console.error(err.error.message, err.options.uri)
+        })
+        ;
+}
+
 for (var prop in cities) {
     if (cities.hasOwnProperty(prop)) {
         console.log(prop, cities[prop][0], cities[prop][1]);
@@ -27,20 +42,22 @@ for (var prop in cities) {
                 units: 'si',
                 exclude: 'alerts,flags'
                 }
-            }
-	
+            };
 
-        rp(options).then(function (response) {
-            fName = 'city_'+prop+'.json';
-            fs.writeFile(fName, response, {'flags':'a'}); 
-            // var meteoData = JSON.parse(response);
-            // console.log(meteoData);
-            // console.log(response);
-        })
-        .catch( function (err) {
-            console.error(err.error.message, err.options.uri)
-        })
-        ;
+        getJson(options);
+	    
+
+        // rp(options).then(function (response) {
+        //     fName = 'city_'+prop+'.json';
+        //     fs.writeFile(fName, response, {'flags':'a'}); 
+        //     // var meteoData = JSON.parse(response);
+        //     // console.log(meteoData);
+        //     // console.log(response);
+        // })
+        // .catch( function (err) {
+        //     console.error(err.error.message, err.options.uri)
+        // })
+        // ;
 
 }
 }
