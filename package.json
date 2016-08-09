@@ -1,0 +1,24 @@
+{
+  "name": "darkskyforecast",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dsw.js",
+  "scripts": {
+    "start": "node dsw.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mihneawalker/darkskyforecast.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mihneawalker/darkskyforecast/issues"
+  },
+  "homepage": "https://github.com/mihneawalker/darkskyforecast#readme",
+  "dependencies": {
+    "request": "^2.74.0",
+    "request-promise": "^4.1.1"
+  }
+}
