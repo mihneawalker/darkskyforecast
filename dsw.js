@@ -34,9 +34,11 @@ for (var prop in cities) {
             {
             if (!error && response.statusCode == 200) 
                 {
-                //console.log(body);
+                // console.log(body);
                 meteoData = JSON.parse(body);
-                fs.writeFileSync("data.json", body, {'flags':'a'}, function(err) 
+                fName = 'data-'+prop+'.json';
+                console.log(fName);
+                fs.writeFileSync(fName, body, {'flags':'a'}, function(err) 
                     {   if (err) 
                         {
                         return console.log(err);
